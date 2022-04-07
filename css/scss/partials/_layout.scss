@@ -1,0 +1,27 @@
+@use './base' as *;
+@use './component' as *;
+
+
+
+//Header
+.header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    &__img {
+        display: block;
+        max-width: 250px;
+        height: auto;
+        margin: 2em auto 1em;
+    }
+}
+
+
+//Recipe grid
+#grid {
+    margin-top: 3em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 2em;
+}
