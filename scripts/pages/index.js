@@ -1,36 +1,24 @@
 import apiManager from '../models/apiManager.js'
+import displayRecipeCard from '../utils/displayRecipeCard.js'
 
 //DOM variables
-const recipeGrid = document.getElementById('grid')
+const searchTerm = document.getElementById('search')
 
+//Initialisation des recettes
 apiManager.init()
 
+//Affichage des recettes
+displayRecipeCard(apiManager.data)
 
-const displayRecipeCard = () => {
-    let gridContent = ''
 
-    apiManager.data.forEach( recipe => {
-        
-        let ingredientListHtml = ''
-
-        recipe.ingredients.forEach( ingredient => ingredientListHtml += `<li class="recipe-ingredient"><span class="recipe-ingredient__name">${ingredient.ingredient}</span>: ${ingredient.quantity ? ingredient.quantity : ''}${ingredient.unit ? ingredient.unit : ''}`)
-        
-        return gridContent += `<article data-id="${recipe.id}" class="recipe-card">
-                            <div class="recipe-card__img-container"></div>
-                            <div class="recipe-card__text-container">
-                                <h2 class="recipe-title">${recipe.name}</h2>
-                                <div class="recipe-time"><i class="fa-solid fa-clock-rotate-left"></i> ${recipe.time} min</div>
-                                <div class="recipe-ingredients">
-                                    <ul>
-                                        ${ingredientListHtml}
-                                    </u>
-                                </div>
-                                <p class="recipe-description">${recipe.description}</p>
-                            </div>
-                        </article>`
-})
-
-    recipeGrid.innerHTML = gridContent
+//Gestion input events de la search bar
+function handleInputChange(e) {
+    if (e.target.value.length > 2){
+        const filteredData = apiManager.data.filter( recipe => recipe.name.toLowerCase().includes(e.target.value.toLowerCase()))
+        displayRecipeCard(filteredData)
+    } else {
+        displayRecipeCard(apiManager.data)
+    }  
 }
 
-displayRecipeCard()
+searchTerm.addEventListener('input', handleInputChange)

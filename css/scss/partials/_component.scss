@@ -31,10 +31,11 @@
 
 //Recipe card
 .recipe-card {
-
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
     &__img-container {
-        height: 200px;
+        height: 180px;
         background-color: $color_darkGrey;
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
@@ -69,7 +70,7 @@
             grid-area: ingredients;
             list-style-type: none;
             font-size: .7rem;
-            line-height: 1.3;
+            line-height: 1.2;
 
             .recipe-ingredient__name {
                 font-weight: bold;
