@@ -71,10 +71,11 @@ body {
 }
 .recipe-card__text-container .recipe-description {
   grid-area: description;
-  /*display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;*/
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 0.7rem;
   line-height: 1.2;
 }
