@@ -22,10 +22,76 @@
     }
 }
 
+//No-results text
+.no-results-text {
+    margin-top: 3em;
+    text-align: center;
+    display: none;
+}
 
 
-//Select menu
 
+//Filter menu
+.filter-btn-toggle {
+    border: none;
+    display: block;
+    border-radius: 5px;
+    font-size: .875rem;
+    color: $color_white;
+
+    &--ingredients {
+        background-color: $color_blue;
+    }
+
+    &--appliances {
+        background-color: $color_green;
+    }
+
+    &--ustensils {
+        background-color: $color_red;
+    }
+
+    &__icon {
+        margin-left: 1.5em;
+    }
+}
+
+
+//Filter input
+.filter-input {
+    display: none;
+
+    ::placeholder {
+        color: $color_lightGrey;
+        font-weight: normal;
+    }
+
+    &__text {
+        display: inline-block;
+        margin-bottom: 1em;
+        color: $color_white;
+        font-weight: bold;
+        background-color: transparent;
+        border: none;
+        width: 85%;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    &__btn {
+        padding: 0;
+        color: $color_white;
+        background-color: transparent;
+        border: none;
+        margin-left: 2.3em;
+
+        &--ingredients {
+            margin-left: 3em;
+        }
+    }
+}
 
 
 
@@ -48,8 +114,8 @@
         background-color: $color_lightGrey;
         padding: 1em;
         display: grid;
-        grid-gap: 15px;
-        grid-template-rows: 30px 110px;
+        grid-gap: 15px 10px;
+        grid-template-rows: 30px 138px;
         grid-template-areas:    
             'title title title title time time'
             'ingredients ingredients ingredients description description description';
@@ -80,7 +146,7 @@
         .recipe-description {
             grid-area: description;
             display: -webkit-box;
-            -webkit-line-clamp: 7;
+            -webkit-line-clamp: 9;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;

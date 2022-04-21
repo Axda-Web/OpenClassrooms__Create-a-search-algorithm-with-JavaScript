@@ -36,6 +36,33 @@
                 <input id="search" type="text" class="form-control form__input" placeholder="Rechercher une recette">
             </form>
         </header>
+        <section class="filter">
+            <div class="filter-container filter-container--ingredients">
+                <button id="ingredientsBtn" class="filter-btn-toggle filter-btn-toggle--ingredients">Ingredients <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
+                <div class="filter-input filter-input__ingredients">
+                    <input type="text" class="filter-input__text filter-input__text--ingredients" placeholder="Rechercher un ingrédient" aria-label="Rechercher un ingrédient" />
+                    <button class="filter-input__btn filter-input__btn--ingredients" type="button" ><span class="fas fa-angle-up filter-btn-toggle__icon"></span></button>
+                </div>
+                <ul class="filter-list filter-list--ingredients"></ul>
+            </div>
+            <div class="filter-container filter-container--appliances">
+                <button id="appliancesBtn" class="filter-btn-toggle filter-btn-toggle--appliances">Appareils <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
+                <div class="filter-input filter-input--appliances">
+                    <input type="text" class="filter-input__text filter-input__text--appliances" placeholder="Rechercher un ingrédient" aria-label="Rechercher un ingrédient" />
+                    <button class="filter-input__btn filter-input__btn--appliances" type="button" ><span class="fas fa-angle-up filter-btn-toggle__icon"></span></button>
+                </div>
+                <ul class="filter-list filter-list--appliances"></ul>
+            </div>
+            <div class="filter-container filter-container--ustensils">
+                <button id="ustensilsBtn" class="filter-btn-toggle filter-btn-toggle--ustensils">Ustensiles <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
+                <div class="filter-input filter-input--ustensils">
+                    <input type="text" class="filter-input__text filter-input__text--ustensils" placeholder="Rechercher un ingrédient" aria-label="Rechercher un ingrédient" />
+                    <button class="filter-input__btn filter-input__btn--ustensils" type="button" ><span class="fas fa-angle-up filter-btn-toggle__icon"></span></button>
+                </div>
+                <ul class="filter-list filter-list--ustensils"></ul>
+            </div>
+        </section>
+        <p class="no-results-text">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.</p>
         <main id="grid">
 
         </main>
