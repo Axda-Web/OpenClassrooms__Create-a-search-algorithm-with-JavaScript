@@ -1,6 +1,6 @@
 import apiManager from '../models/apiManager.js'
 import displayRecipeCard from '../utils/displayRecipeCard.js'
-import { displayFilterListItems, showFilterList, closeFilterList } from '../utils/filterList.js'
+import { displayFilterListItems, showFilterList, closeFilterList, closeFilterListWithExternalClick } from '../utils/filterList.js'
 
 //DOM variables
 const searchTerm = document.getElementById('search')
@@ -71,4 +71,7 @@ function handleFilterBtnClick(event) {
 filterBtns.forEach( btn => btn.addEventListener('click', handleFilterBtnClick)) 
 
 filterInputBtns.forEach( btn => btn.addEventListener('click', closeFilterList))
+
+//F
+document.body.addEventListener('click', closeFilterListWithExternalClick)
 

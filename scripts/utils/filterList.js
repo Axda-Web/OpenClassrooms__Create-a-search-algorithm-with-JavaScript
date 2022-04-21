@@ -14,9 +14,40 @@ export const displayFilterListItems = (data) => {
 
 //Fermeture des dropdown menu filtres avancés
 export const closeFilterList = (event) => {
-    filterBtn.forEach( btn => btn.style.display = 'block')
-    filterInput.forEach( input => input.style.display = 'none') 
+
+    filterBtn.forEach( btn => {
+        
+        //Accessibilité
+        btn.setAttribute('aria-expanded', 'false')
+        btn.setAttribute('aria-hidden', 'false')
+
+        btn.style.display = 'block'
+    })
+
+    filterInput.forEach( input => {
+
+        //Accessibilité
+        input.setAttribute('aria-hidden', 'true')
+
+        input.style.display = 'none'
+    })
+
     filterList.forEach( list => list.style.display = 'none') 
+}
+
+
+//Fermeture des dropdown menu filtres avancés lors d'un click externe
+export const closeFilterListWithExternalClick = (event) => {
+    switch(event.target.id){
+        case 'ingredientsBtn':
+            break
+        case 'appliancesBtn':
+            break
+        case 'ustensilsBtn':
+            break
+        default:
+            closeFilterList()
+    }
 }
 
 
@@ -30,6 +61,11 @@ export const showFilterList = (target) => {
 
         //Fermeture du dropdown menu actuellement ouvert (si besoin)
         closeFilterList()
+
+        //Accessibilité
+        currentFilterBtnToggle.setAttribute('aria-expanded', 'true')
+        currentFilterBtnToggle.setAttribute('aria-hidden', 'true')
+        currentFilterInput.setAttribute('aria-hidden', 'false')
 
         //Affichage du dropdown menu associé au btn clické
         currentFilterBtnToggle.style.display = 'none'

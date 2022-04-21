@@ -32,34 +32,34 @@
         <header class="header">
             <img class="header__img" src="./assets/logo.png" alt="Logo Les petits plats">
             <form class="header__form" action="">
-                <i class="fa-solid fa-magnifying-glass form__icon"></i>
-                <input id="search" type="text" class="form-control form__input" placeholder="Rechercher une recette">
+                <span class="fa-solid fa-magnifying-glass form__icon"></span>
+                <input id="search" type="text" class="form-control form__input" placeholder="Rechercher une recette" aria-label="rechercher une recette">
             </form>
         </header>
         <section class="filter">
             <div class="filter-container filter-container--ingredients">
-                <button id="ingredientsBtn" class="filter-btn-toggle filter-btn-toggle--ingredients">Ingredients <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
-                <div class="filter-input filter-input__ingredients">
-                    <input type="text" class="filter-input__text filter-input__text--ingredients" placeholder="Rechercher un ingrédient" aria-label="Rechercher un ingrédient" />
+                <button id="ingredientsBtn" class="filter-btn-toggle filter-btn-toggle--ingredients" aria-hidden="false" aria-label="trier par ingrédient" aria-haspopup="listbox" aria-expanded="false" aria-owns="ingredients-filter-list">Ingredients <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
+                <div class="filter-input filter-input__ingredients" aria-hidden="true">
+                    <input type="text" class="filter-input__text filter-input__text--ingredients" placeholder="Rechercher un ingrédient" aria-label="Rechercher un ingrédient"/>
                     <button class="filter-input__btn filter-input__btn--ingredients" type="button" ><span class="fas fa-angle-up filter-btn-toggle__icon"></span></button>
                 </div>
-                <ul class="filter-list filter-list--ingredients"></ul>
+                <ul class="filter-list filter-list--ingredients" tabindex="-1" aria-activedescendant="" aria-label="liste ingrédient" id="ingredients-filter-list" role="listbox" ></ul>
             </div>
             <div class="filter-container filter-container--appliances">
-                <button id="appliancesBtn" class="filter-btn-toggle filter-btn-toggle--appliances">Appareils <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
-                <div class="filter-input filter-input--appliances">
-                    <input type="text" class="filter-input__text filter-input__text--appliances" placeholder="Rechercher un ingrédient" aria-label="Rechercher un ingrédient" />
+                <button id="appliancesBtn" class="filter-btn-toggle filter-btn-toggle--appliances" aria-hidden="false" aria-label="trier par appareils" aria-haspopup="listbox" aria-expanded="false" aria-owns="appareils-filter-list">Appareils <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
+                <div class="filter-input filter-input--appliances" aria-hidden="true">
+                    <input type="text" class="filter-input__text filter-input__text--appliances" placeholder="Rechercher un appareil" aria-label="Rechercher un appareil"/>
                     <button class="filter-input__btn filter-input__btn--appliances" type="button" ><span class="fas fa-angle-up filter-btn-toggle__icon"></span></button>
                 </div>
-                <ul class="filter-list filter-list--appliances"></ul>
+                <ul class="filter-list filter-list--appliances" tabindex="-1" aria-activedescendant="" aria-label="liste appareils" id="appareils-filter-list" role="listbox"></ul>
             </div>
             <div class="filter-container filter-container--ustensils">
-                <button id="ustensilsBtn" class="filter-btn-toggle filter-btn-toggle--ustensils">Ustensiles <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
-                <div class="filter-input filter-input--ustensils">
-                    <input type="text" class="filter-input__text filter-input__text--ustensils" placeholder="Rechercher un ingrédient" aria-label="Rechercher un ingrédient" />
+                <button id="ustensilsBtn" class="filter-btn-toggle filter-btn-toggle--ustensils" aria-hidden="false" aria-label="trier par ustensiles" aria-haspopup="listbox" aria-expanded="false" aria-owns="ustensiles-filter-list">Ustensiles <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
+                <div class="filter-input filter-input--ustensils" aria-hidden="true">
+                    <input type="text" class="filter-input__text filter-input__text--ustensils" placeholder="Rechercher un ustensile" aria-label="Rechercher un ustensile"/>
                     <button class="filter-input__btn filter-input__btn--ustensils" type="button" ><span class="fas fa-angle-up filter-btn-toggle__icon"></span></button>
                 </div>
-                <ul class="filter-list filter-list--ustensils"></ul>
+                <ul class="filter-list filter-list--ustensils" tabindex="-1" aria-activedescendant="" aria-label="liste ustensiles" id="ustensils-filter-list" role="listbox"></ul>
             </div>
         </section>
         <p class="no-results-text">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.</p>
