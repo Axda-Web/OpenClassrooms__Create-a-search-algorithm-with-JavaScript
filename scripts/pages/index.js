@@ -1,6 +1,6 @@
 import apiManager from '../models/apiManager.js'
 import displayRecipeCard from '../utils/displayRecipeCard.js'
-import { displayFilterListItems, showFilterList, closeFilterList, closeFilterListWithExternalClick } from '../utils/filterList.js'
+import { displayFilterListItems, showFilterList, closeFilterList, closeFilterListWithExternalClick, displaySelectedItemsBadge } from '../utils/filterList.js'
 
 //DOM variables
 const searchTerm = document.getElementById('search')
@@ -19,6 +19,10 @@ apiManager.getData()
 apiManager.getIngredients()
 apiManager.getAppliances()
 apiManager.getUstensils()
+
+ingredientsFilterList.innerHTML = displayFilterListItems(apiManager.ingredients)
+appliancesFilterList.innerHTML = displayFilterListItems(apiManager.appliances)
+ustensilsFilterList.innerHTML = displayFilterListItems(apiManager.ustensils)
 
 
 //Affichage des recettes
@@ -50,28 +54,15 @@ searchTerm.addEventListener('input', handleInputChange)
 
 
 
-function handleFilterBtnClick(event) {
+//Gestion du click event sur les btn permetant d'afficher les menu filtres avancés
+filterBtns.forEach( btn => btn.addEventListener('click', showFilterList)) 
 
-    switch(event.currentTarget.id){
-        case 'ingredientsBtn':
-            ingredientsFilterList.innerHTML = displayFilterListItems(apiManager.ingredients)
-            break
-        
-        case 'appliancesBtn':
-            appliancesFilterList.innerHTML = displayFilterListItems(apiManager.appliances)
-            break
-
-        case 'ustensilsBtn':
-            ustensilsFilterList.innerHTML = displayFilterListItems(apiManager.ustensils)
-            break
-    } 
-
-    showFilterList(event.currentTarget)
-}
-filterBtns.forEach( btn => btn.addEventListener('click', handleFilterBtnClick)) 
-
+//Gestion du click event sur les btn permetant de masquer les menu filtres avancés
 filterInputBtns.forEach( btn => btn.addEventListener('click', closeFilterList))
 
-//F
+const filterListItems = document.querySelectorAll('.filter-list__item')
+filterListItems.forEach( item => item.addEventListener('click', displaySelectedItemsBadge))
+
+//Gestion du click event sur la page permetant de masquer les menu filtres avancés (si besoin)
 document.body.addEventListener('click', closeFilterListWithExternalClick)
 

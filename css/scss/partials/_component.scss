@@ -30,6 +30,31 @@
 }
 
 
+//Badge
+.badge {
+    font-size: .75rem;
+    color: $color_white;
+    padding: .8em 1em;
+    border-radius: 5px;
+
+    &--ingredient {
+        background-color: $color_blue;
+    }
+
+    &--appliance {
+        background-color: $color_green;
+    }
+
+    &--ustensil {
+        background-color: $color_red;
+    }
+
+    &__icon {
+        margin-left: .75em;
+    }
+}
+
+
 
 //Filter menu
 .filter-btn-toggle {

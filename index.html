@@ -36,6 +36,7 @@
                 <input id="search" type="text" class="form-control form__input" placeholder="Rechercher une recette" aria-label="rechercher une recette">
             </form>
         </header>
+        <section class="badges-container"></section>
         <section class="filter">
             <div class="filter-container filter-container--ingredients">
                 <button id="ingredientsBtn" class="filter-btn-toggle filter-btn-toggle--ingredients" aria-hidden="false" aria-label="trier par ingrédient" aria-haspopup="listbox" aria-expanded="false" aria-owns="ingredients-filter-list">Ingredients <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
@@ -51,7 +52,7 @@
                     <input type="text" class="filter-input__text filter-input__text--appliances" placeholder="Rechercher un appareil" aria-label="Rechercher un appareil"/>
                     <button class="filter-input__btn filter-input__btn--appliances" type="button" ><span class="fas fa-angle-up filter-btn-toggle__icon"></span></button>
                 </div>
-                <ul class="filter-list filter-list--appliances" tabindex="-1" aria-activedescendant="" aria-label="liste appareils" id="appareils-filter-list" role="listbox"></ul>
+                <ul class="filter-list filter-list--appliances" tabindex="-1" aria-activedescendant="" aria-label="liste appareils" id="appliances-filter-list" role="listbox"></ul>
             </div>
             <div class="filter-container filter-container--ustensils">
                 <button id="ustensilsBtn" class="filter-btn-toggle filter-btn-toggle--ustensils" aria-hidden="false" aria-label="trier par ustensiles" aria-haspopup="listbox" aria-expanded="false" aria-owns="ustensiles-filter-list">Ustensiles <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>

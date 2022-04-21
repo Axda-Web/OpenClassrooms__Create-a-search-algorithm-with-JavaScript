@@ -17,6 +17,18 @@
     }
 }
 
+
+
+//Badges section
+.badges-container {
+    margin: 1em 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+
 //Filter section
 .filter {
     margin-top: 1em;

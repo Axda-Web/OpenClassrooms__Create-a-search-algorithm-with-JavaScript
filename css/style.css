@@ -53,6 +53,25 @@ body {
   display: none;
 }
 
+.badge {
+  font-size: 0.75rem;
+  color: #FFF;
+  padding: 0.8em 1em;
+  border-radius: 5px;
+}
+.badge--ingredient {
+  background-color: #3282F7;
+}
+.badge--appliance {
+  background-color: #68D9A4;
+}
+.badge--ustensil {
+  background-color: #ED6454;
+}
+.badge__icon {
+  margin-left: 0.75em;
+}
+
 .filter-btn-toggle {
   border: none;
   display: block;
@@ -164,6 +183,13 @@ body {
   max-width: 250px;
   height: auto;
   margin: 2em auto 1em;
+}
+
+.badges-container {
+  margin: 1em 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .filter {
