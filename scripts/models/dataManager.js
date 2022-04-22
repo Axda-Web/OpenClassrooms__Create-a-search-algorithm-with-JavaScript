@@ -1,17 +1,7 @@
 import recipes from "../../data/recipes.js"
 
 
-export default class apiManager {
-    constructor(){
-        this.data = []
-        this.filteredData = []
-        this.ingredients = []
-        this.filteredIngredients = []
-        this.ustensils = []
-        this.filteredUstensils = []
-        this.appliances = []
-        this.filteredAppliance = []
-    }
+export default class dataManager {
     
     static getData() {
         this.data = recipes
@@ -33,9 +23,14 @@ export default class apiManager {
         this.ustensils = [...new Set(duplicatesUstensils)]
     }
 
+    static setBadgeItems() {
+        this.badgeItems = []
+    }
+
     static filterData(term) {
         this.filteredData = this.data.filter( recipe => recipe.name.toLowerCase().includes(term) || 
         recipe.description.toLowerCase().includes(term) ||
         recipe.ingredients.some( ingredient => ingredient.ingredient.includes(term)))
-    }
+    } 
 }
+

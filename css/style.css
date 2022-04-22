@@ -70,6 +70,7 @@ body {
 }
 .badge__icon {
   margin-left: 0.75em;
+  cursor: pointer;
 }
 
 .filter-btn-toggle {
@@ -187,7 +188,7 @@ body {
 
 .badges-container {
   margin: 1em 0;
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 10px;
 }

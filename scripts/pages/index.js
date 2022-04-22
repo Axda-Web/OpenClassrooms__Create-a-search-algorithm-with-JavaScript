@@ -1,6 +1,6 @@
-import apiManager from '../models/apiManager.js'
+import dataManager from '../models/dataManager.js'
 import displayRecipeCard from '../utils/displayRecipeCard.js'
-import { displayFilterListItems, showFilterList, closeFilterList, closeFilterListWithExternalClick, displaySelectedItemsBadge } from '../utils/filterList.js'
+import { displayFilterListItems, showFilterList, closeFilterList, addBadge } from '../utils/filterList.js'
 
 //DOM variables
 const searchTerm = document.getElementById('search')
@@ -13,20 +13,21 @@ const filterInputBtns = document.querySelectorAll('.filter-input__btn')
 
 
 
-
 //Initialisation des data
-apiManager.getData()
-apiManager.getIngredients()
-apiManager.getAppliances()
-apiManager.getUstensils()
+dataManager.getData()
+dataManager.getIngredients()
+dataManager.getAppliances()
+dataManager.getUstensils()
+dataManager.setBadgeItems()
 
-ingredientsFilterList.innerHTML = displayFilterListItems(apiManager.ingredients)
-appliancesFilterList.innerHTML = displayFilterListItems(apiManager.appliances)
-ustensilsFilterList.innerHTML = displayFilterListItems(apiManager.ustensils)
+
+ingredientsFilterList.innerHTML = displayFilterListItems(dataManager.ingredients)
+appliancesFilterList.innerHTML = displayFilterListItems(dataManager.appliances)
+ustensilsFilterList.innerHTML = displayFilterListItems(dataManager.ustensils)
 
 
 //Affichage des recettes
-displayRecipeCard(apiManager.data)
+displayRecipeCard(dataManager.data)
 
 
 
@@ -34,20 +35,20 @@ function handleInputChange(e){
     if (e.target.value.length > 2){
 
         //Récupération des data filtrées
-        apiManager.filterData(e.target.value.toLocaleLowerCase())
+        dataManager.filterData(e.target.value.toLocaleLowerCase())
 
         //Affichage du message d'erreur en fonction des résultats de la recherche
-        !apiManager.filteredData.length ? noResultsText.style.display = 'block' : noResultsText.style.display = ''
+        !dataManager.filteredData.length ? noResultsText.style.display = 'block' : noResultsText.style.display = ''
 
         //Affichage des data filtrées
-        displayRecipeCard(apiManager.filteredData)    
+        displayRecipeCard(dataManager.filteredData)    
     } else {
 
         //Masquage du message d'erreur
         noResultsText.style.display = ''
 
         //Affichage des data non-filtrées
-        displayRecipeCard(apiManager.data)
+        displayRecipeCard(dataManager.data)
     }
 }
 searchTerm.addEventListener('input', handleInputChange)
@@ -60,9 +61,7 @@ filterBtns.forEach( btn => btn.addEventListener('click', showFilterList))
 //Gestion du click event sur les btn permetant de masquer les menu filtres avancés
 filterInputBtns.forEach( btn => btn.addEventListener('click', closeFilterList))
 
+//Gestion du click event sur les filter items permettant d'afficher les badges
 const filterListItems = document.querySelectorAll('.filter-list__item')
-filterListItems.forEach( item => item.addEventListener('click', displaySelectedItemsBadge))
-
-//Gestion du click event sur la page permetant de masquer les menu filtres avancés (si besoin)
-document.body.addEventListener('click', closeFilterListWithExternalClick)
+filterListItems.forEach( item => item.addEventListener('click', addBadge))
 
