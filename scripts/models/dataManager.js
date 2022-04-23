@@ -11,16 +11,19 @@ export default class dataManager {
     static getIngredients() {
         const duplicatesIngredients = this.filteredData.map( recipe => recipe.ingredients ).flat().map( item => item['ingredient'])
         this.ingredients = [...new Set(duplicatesIngredients)]
+        this.filteredIngredients = this.ingredients
     }
 
     static getAppliances() {
         const duplicatesAppliances = this.filteredData.map( recipe => recipe.appliance )
         this.appliances = [...new Set(duplicatesAppliances)]
+        this.filteredAppliances = this.appliances
     }
 
     static getUstensils() {
         const duplicatesUstensils = this.filteredData.map( recipe => recipe.ustensils ).flat()
         this.ustensils = [...new Set(duplicatesUstensils)]
+        this.filteredUstensils = this.ustensils
     }
 
     static setBadgeItems() {

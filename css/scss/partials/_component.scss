@@ -85,7 +85,10 @@
 
 //Filter input
 .filter-input {
+    width: 100%;
     display: none;
+    justify-content: space-between;
+    align-items: baseline;
 
     ::placeholder {
         color: $color_lightGrey;
@@ -93,13 +96,11 @@
     }
 
     &__text {
-        display: inline-block;
         margin-bottom: 1em;
         color: $color_white;
         font-weight: bold;
         background-color: transparent;
         border: none;
-        width: 85%;
 
         &:focus {
             outline: 0;
@@ -111,11 +112,6 @@
         color: $color_white;
         background-color: transparent;
         border: none;
-        margin-left: 2.3em;
-
-        &--ingredients {
-            margin-left: 3em;
-        }
     }
 }
 

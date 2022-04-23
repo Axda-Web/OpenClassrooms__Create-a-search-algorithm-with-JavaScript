@@ -44,7 +44,7 @@
                     <input type="text" id="filter" class="filter-input__text filter-input__text--ingredients" placeholder="Rechercher un ingrédient" aria-label="Rechercher un ingrédient"/>
                     <button class="filter-input__btn filter-input__btn--ingredients" type="button" ><span class="fas fa-angle-up filter-btn-toggle__icon"></span></button>
                 </div>
-                <ul class="filter-list filter-list--ingredients" tabindex="-1" aria-activedescendant="" aria-label="liste ingrédient" id="ingredients-filter-list" role="listbox" ></ul>
+                <ul class="filter-list filter-list--ingredients" tabindex="-1" aria-activedescendant="" aria-label="liste ingrédients" id="ingredients-filter-list" role="listbox" aria-multiselectable="true"></ul>
             </div>
             <div class="filter-container filter-container--appliances">
                 <button id="appliancesBtn" class="filter-btn-toggle filter-btn-toggle--appliances" aria-hidden="false" aria-label="trier par appareils" aria-haspopup="listbox" aria-expanded="false" aria-owns="appareils-filter-list">Appareils <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
@@ -52,7 +52,7 @@
                     <input type="text" id="filter" class="filter-input__text filter-input__text--appliances" placeholder="Rechercher un appareil" aria-label="Rechercher un appareil"/>
                     <button class="filter-input__btn filter-input__btn--appliances" type="button" ><span class="fas fa-angle-up filter-btn-toggle__icon"></span></button>
                 </div>
-                <ul class="filter-list filter-list--appliances" tabindex="-1" aria-activedescendant="" aria-label="liste appareils" id="appliances-filter-list" role="listbox"></ul>
+                <ul class="filter-list filter-list--appliances" tabindex="-1" aria-activedescendant="" aria-label="liste appareils" id="appliances-filter-list" role="listbox" aria-multiselectable="true"></ul>
             </div>
             <div class="filter-container filter-container--ustensils">
                 <button id="ustensilsBtn" class="filter-btn-toggle filter-btn-toggle--ustensils" aria-hidden="false" aria-label="trier par ustensiles" aria-haspopup="listbox" aria-expanded="false" aria-owns="ustensiles-filter-list">Ustensiles <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
@@ -60,7 +60,7 @@
                     <input type="text" id="filter" class="filter-input__text filter-input__text--ustensils" placeholder="Rechercher un ustensile" aria-label="Rechercher un ustensile"/>
                     <button class="filter-input__btn filter-input__btn--ustensils" type="button" ><span class="fas fa-angle-up filter-btn-toggle__icon"></span></button>
                 </div>
-                <ul class="filter-list filter-list--ustensils" tabindex="-1" aria-activedescendant="" aria-label="liste ustensiles" id="ustensils-filter-list" role="listbox"></ul>
+                <ul class="filter-list filter-list--ustensils" tabindex="-1" aria-activedescendant="" aria-label="liste ustensiles" id="ustensils-filter-list" role="listbox" aria-multiselectable="true"></ul>
             </div>
         </section>
         <p class="no-results-text">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.</p>

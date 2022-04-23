@@ -94,20 +94,21 @@ body {
 }
 
 .filter-input {
+  width: 100%;
   display: none;
+  justify-content: space-between;
+  align-items: baseline;
 }
 .filter-input ::placeholder {
   color: #E7E7E7;
   font-weight: normal;
 }
 .filter-input__text {
-  display: inline-block;
   margin-bottom: 1em;
   color: #FFF;
   font-weight: bold;
   background-color: transparent;
   border: none;
-  width: 85%;
 }
 .filter-input__text:focus {
   outline: 0;
@@ -117,10 +118,6 @@ body {
   color: #FFF;
   background-color: transparent;
   border: none;
-  margin-left: 2.3em;
-}
-.filter-input__btn--ingredients {
-  margin-left: 3em;
 }
 
 .recipe-card {
