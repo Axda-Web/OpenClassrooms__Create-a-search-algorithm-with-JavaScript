@@ -29,7 +29,13 @@ const generateRandomId = () => {
 //Formatage HTML des éléments contenus dans les data filtres avancés
 export const displayFilterListItems = data => {
     let filterListHtml = ''
-    data.forEach( item => filterListHtml += `<li data-item_id="${generateRandomId()}" tabindex="0" id="filter--${item.split(' ').join('_')}" class="filter-list__item" role="option" aria-selected="false" >${item}</li>`)
+
+    if (data.length > 0) {
+        data.forEach( item => filterListHtml += `<li data-item_id="${generateRandomId()}" tabindex="0" id="filter--${item.split(' ').join('_')}" class="filter-list__item" role="option" aria-selected="false" >${item}</li>`)
+    } else {
+        filterListHtml = '<li tabindex="0" class="filter-list__item filter-list__item--empty" role="option" aria-selected="false" >Pas de résultat pour cette recherche...</li>'
+    }
+
     return filterListHtml
 }
 
@@ -172,6 +178,10 @@ export const closeFilterList = event => {
 
     filterLists.forEach( list => list.style.display = 'none')
 
+    //Reset des éléments présents dans les menus filter avancés
+    filterInputs.forEach( input => input.childNodes[1].value = '')
+    updateFilterListData()
+
     //Suppresion de la gestion du click event sur la page permetant de masquer les menu filtres avancés
     document.body.removeEventListener('click', closeFilterListWithExternalClick)
 }
@@ -196,10 +206,43 @@ export const closeFilterListWithExternalClick = event => {
             break
         case 'ustensilsBtn':
             break
-        case 'filter':
+        case 'filter-input-ingredients':
+            break
+        case 'filter-input-appliances':
+            break
+        case 'filter-input-ustensils':
             break
         default:
             closeFilterList()
+    }
+}
+
+
+//Recherche dans les filtres avancés
+const advancedFilterSearch = (event) => {
+
+    if (event.target.value.length > 2){
+
+        switch(event.target.id){
+            case 'filter-input-ingredients':
+                dataManager.filterIngredients(event.target.value.toLocaleLowerCase())
+                ingredientsFilterList.innerHTML = displayFilterListItems(dataManager.filteredIngredients)
+                break
+            case 'filter-input-appliances':
+                dataManager.filterAppliances(event.target.value.toLocaleLowerCase())
+                appliancesFilterList.innerHTML = displayFilterListItems(dataManager.filteredAppliances)
+                break
+            case 'filter-input-ustensils':
+                dataManager.filterUstensils(event.target.value.toLocaleLowerCase())
+                ustensilsFilterList.innerHTML = displayFilterListItems(dataManager.filteredUstensils)
+                break
+        }
+
+        const filterListItems = document.querySelectorAll('.filter-list__item')
+        filterListItems.forEach( item => item.addEventListener('click', addBadge))
+
+    } else {
+        updateFilterListData()
     }
 }
 
@@ -225,6 +268,9 @@ export const showFilterList = event => {
         currentFilterBtnToggle.style.display = 'none'
         currentFilterInput.style.display = 'flex'
         currentFilterList.style.display = 'grid'
+
+        //Gestion de l'input event afin d'effectuer une recherche dans les filtres avancés
+        currentFilterInput.addEventListener('input', advancedFilterSearch)
 
         //Gestion du click event sur la page permetant de masquer les menu filtres avancés
         document.body.addEventListener('click', closeFilterListWithExternalClick)

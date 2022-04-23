@@ -229,6 +229,9 @@ body {
   padding: 0.2em 0;
   padding-right: 1.3em;
 }
+.filter-list__item--empty {
+  font-style: italic;
+}
 
 #grid {
   margin-top: 4em;

@@ -74,6 +74,10 @@
             cursor: pointer;
             padding: .2em 0;
             padding-right: 1.3em;
+
+            &--empty {
+                font-style: italic;
+            }
         }
     }
 }

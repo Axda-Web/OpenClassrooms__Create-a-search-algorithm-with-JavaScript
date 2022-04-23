@@ -34,6 +34,18 @@ export default class dataManager {
         this.filteredData = this.data.filter( recipe => recipe.name.toLowerCase().includes(term) || 
         recipe.description.toLowerCase().includes(term) ||
         recipe.ingredients.some( ingredient => ingredient.ingredient.includes(term)))
-    } 
+    }
+    
+    static filterIngredients(term) {
+        this.filteredIngredients = this.ingredients.filter( ingredient => ingredient.toLowerCase().includes(term))
+    }
+
+    static filterAppliances(term) {
+        this.filteredAppliances = this.appliances.filter( appliance => appliance.toLowerCase().includes(term))
+    }
+
+    static filterUstensils(term) {
+        this.filteredUstensils = this.ustensils.filter( ustensil => ustensil.toLowerCase().includes(term))
+    }
 }
 
