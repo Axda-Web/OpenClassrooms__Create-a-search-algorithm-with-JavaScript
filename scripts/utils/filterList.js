@@ -1,4 +1,5 @@
 import dataManager from "../models/dataManager.js"
+import displayRecipeCard from "./displayRecipeCard.js"
 
 //DOM variables
 const filterBtns = document.querySelectorAll('.filter-btn-toggle')
@@ -6,17 +7,17 @@ const filterInputs = document.querySelectorAll('.filter-input')
 const filterLists = document.querySelectorAll('.filter-list')
 const badgesContainer = document.querySelector('.badges-container')
 const recipesGrid = document.getElementById('grid')
-
 const ingredientsFilterList = document.querySelector('.filter-list--ingredients')
 const appliancesFilterList = document.querySelector('.filter-list--appliances')
 const ustensilsFilterList = document.querySelector('.filter-list--ustensils')
+const noResultsText = document.querySelector('.no-results-text')
 
 
 
 //Génération id aléatoire pour les items contenus dans les listes filtres avancés
 const generateRandomId = () => {
     const prevIds = []
-    const newId = Math.floor(Math.random() * 101)
+    const newId = Math.floor(Math.random() * 1001)
 
     if(!prevIds.find( id => id === newId)) {
         prevIds.push(newId)
@@ -61,9 +62,18 @@ export const addBadge = event => {
     } else {
         dataManager.badgeItems = [...dataManager.badgeItems, newBadge]
     }
+
+    //MAJ des data affichées en fonction des badges actifs
+    dataManager.filterWithBadges()
+    !dataManager.filteredData.length ? noResultsText.style.display = 'block' : noResultsText.style.display = ''
+    displayRecipeCard(dataManager.filteredData)
+    updateFilterListData()
     
     //Affichage du badge
     displayBadges()
+
+    //Reset de l'input text dans les menus filter avancés
+    filterInputs.forEach( input => input.childNodes[1].value = '')
 }
 
 
@@ -97,6 +107,7 @@ const displayBadges = () => {
                 break
         }
     })
+
 
     //Insertion HTML
     badgesContainer.innerHTML = badgeHtml
@@ -150,6 +161,19 @@ export const removeBadge = event => {
     //Suppression du badge selectionné dans l'array contenant les badges
     dataManager.badgeItems = dataManager.badgeItems.filter( badge => badge.id !== event.target.parentNode.dataset.badge_id)
 
+    
+    //MAJ des data
+    if (dataManager.badgeItems.length === 0) {
+        noResultsText.style.display = ''
+        updateFilterListData()
+        displayRecipeCard(dataManager.filteredWithSearchbar)
+    }
+
+    dataManager.filteredData = dataManager.filteredWithSearchbar
+    dataManager.filterWithBadges()
+    updateFilterListData()
+    displayRecipeCard(dataManager.filteredData)
+
     //MAJ de l'UI sans le badge supprimé
     displayBadges()
 }
@@ -159,6 +183,7 @@ export const removeBadge = event => {
 //Fermeture des dropdown menu filtres avancés
 export const closeFilterList = event => {
 
+    //Affichage des btn permettant d'afficher les menus filtres avancés
     filterBtns.forEach( btn => {
         
         //Accessibilité
@@ -168,6 +193,8 @@ export const closeFilterList = event => {
         btn.style.display = 'block'
     })
 
+
+    //Masquage des menus filtres avancés
     filterInputs.forEach( input => {
 
         //Accessibilité
@@ -178,6 +205,8 @@ export const closeFilterList = event => {
 
     filterLists.forEach( list => list.style.display = 'none')
 
+    
+    
     //Reset des éléments présents dans les menus filter avancés
     filterInputs.forEach( input => input.childNodes[1].value = '')
     updateFilterListData()
@@ -218,6 +247,7 @@ export const closeFilterListWithExternalClick = event => {
 }
 
 
+
 //Recherche dans les filtres avancés
 const advancedFilterSearch = (event) => {
 
@@ -251,13 +281,13 @@ const advancedFilterSearch = (event) => {
 //Ouverture des menus filtres avancés
 export const showFilterList = event => {
 
+        //Fermeture du dropdown menu actuellement ouvert (si besoin)
+        closeFilterList()
+
         //DOM variables
         const currentFilterBtnToggle = event.currentTarget
         const currentFilterInput = currentFilterBtnToggle.nextElementSibling
         const currentFilterList = currentFilterInput.nextElementSibling
-
-        //Fermeture du dropdown menu actuellement ouvert (si besoin)
-        closeFilterList()
 
         //Accessibilité
         currentFilterBtnToggle.setAttribute('aria-expanded', 'true')
@@ -280,10 +310,13 @@ export const showFilterList = event => {
 
 //MAJ des data contenus dans les filtres avancés après recherche effectuée dans la barre de recherche
 export const updateFilterListData = () => {
+
+    //Récupération des data
     dataManager.getIngredients()
     dataManager.getAppliances()
     dataManager.getUstensils()
 
+    //Génération + insertion du HTML 
     ingredientsFilterList.innerHTML = displayFilterListItems(dataManager.ingredients)
     appliancesFilterList.innerHTML = displayFilterListItems(dataManager.appliances)
     ustensilsFilterList.innerHTML = displayFilterListItems(dataManager.ustensils)

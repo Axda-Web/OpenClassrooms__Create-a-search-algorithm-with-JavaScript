@@ -15,15 +15,12 @@ const filterInputBtns = document.querySelectorAll('.filter-input__btn')
 dataManager.getData()
 dataManager.setBadgeItems()
 
-//MAJ des datas filtres avancés
-updateFilterListData()
-
-
 //Affichage des recettes
 displayRecipeCard(dataManager.data)
 
 
 
+//Gestion de l'input event dans la searchBar
 function handleInputChange(event){
     if (event.target.value.length > 2){
 
@@ -36,6 +33,7 @@ function handleInputChange(event){
         //Affichage des data filtrées
         displayRecipeCard(dataManager.filteredData)
         
+        //MAJ des items dans les menus filtres avancés
         updateFilterListData()
 
     } else {

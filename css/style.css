@@ -47,12 +47,6 @@ body {
   top: 1em;
 }
 
-.no-results-text {
-  margin-top: 3em;
-  text-align: center;
-  display: none;
-}
-
 .badge {
   font-size: 0.75rem;
   color: #FFF;
@@ -118,6 +112,12 @@ body {
   color: #FFF;
   background-color: transparent;
   border: none;
+}
+
+.no-results-text {
+  margin-top: 3em;
+  text-align: center;
+  display: none;
 }
 
 .recipe-card {
@@ -235,6 +235,7 @@ body {
 
 #grid {
   margin-top: 4em;
+  max-width: 1110px;
   position: absolute;
   top: 270px;
   display: grid;
