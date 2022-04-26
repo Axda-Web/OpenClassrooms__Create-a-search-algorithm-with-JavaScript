@@ -97,13 +97,13 @@ const displayBadges = () => {
     dataManager.badgeItems.map( item => {
         switch(item.category){
             case 'ingredients-filter-list':
-                badgeHtml += `<div data-badge_id="${item.id}"class="badge badge--ingredient">${item.name} <span class="fa-solid fa-circle-xmark badge__icon"></span></div>`
+                badgeHtml += `<div data-badge_id="${item.id}"class="badge badge--ingredient">${item.name} <span class="far fa-times-circle badge__icon"></span></div>`
                 break
             case 'appliances-filter-list':
-                badgeHtml += `<div data-badge_id="${item.id}"class="badge badge--appliance">${item.name} <span class="fa-solid fa-circle-xmark badge__icon"></span></div>`
+                badgeHtml += `<div data-badge_id="${item.id}"class="badge badge--appliance">${item.name} <span class="far fa-times-circle badge__icon"></span></div>`
                 break
             case 'ustensils-filter-list':
-                badgeHtml += `<div data-badge_id="${item.id}"class="badge badge--ustensil">${item.name} <span class="fa-solid fa-circle-xmark badge__icon"></span></div>`
+                badgeHtml += `<div data-badge_id="${item.id}"class="badge badge--ustensil">${item.name} <span class="far fa-times-circle badge__icon"></span></div>`
                 break
         }
     })

@@ -44,7 +44,8 @@
     }
 
     &__icon {
-        margin-left: .75em;
+        font-size: 1rem;
+        margin-left: .5em;
         cursor: pointer;
     }
 }
@@ -139,7 +140,7 @@
         background-color: $color_lightGrey;
         padding: 1em;
         display: grid;
-        grid-gap: 15px 10px;
+        grid-gap: 20px 10px;
         grid-template-rows: 30px 138px;
         grid-template-areas:    
             'title title title title time time'
@@ -155,6 +156,10 @@
             grid-area: time;
             font-weight: bold;
             align-self: baseline;
+
+            &__icon {
+                margin-right: 2px;
+            }
         }
 
         .recipe-ingredients ul {
@@ -169,9 +174,10 @@
         }
 
         .recipe-description {
+            height: 110px;
             grid-area: description;
             display: -webkit-box;
-            -webkit-line-clamp: 9;
+            -webkit-line-clamp: 8;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;

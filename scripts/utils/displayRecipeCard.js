@@ -10,13 +10,26 @@ const displayRecipeCard = (data) => {
         
         let ingredientListHtml = ''
 
-        recipe.ingredients.forEach( ingredient => ingredientListHtml += `<li class="recipe-ingredient"><span class="recipe-ingredient__name">${ingredient.ingredient}</span>: ${ingredient.quantity ? ingredient.quantity : ''}${ingredient.unit ? ingredient.unit : ''}`)
+        recipe.ingredients.forEach( ingredient => {
+
+            let formatedIngredientQuantity = ingredient.quantity ? `: ${ingredient.quantity}` : ''
+            let formatedUnit = ingredient.unit ? ingredient.unit : ''
+            let separator
+
+            if (formatedUnit.length === 0 || formatedUnit.length < 3){
+                separator = ''
+            } else {
+                separator = ' '
+            }
+            
+            ingredientListHtml += `<li class="recipe-ingredient"><span class="recipe-ingredient__name">${ingredient.ingredient}</span>${formatedIngredientQuantity}${separator}${formatedUnit}`
+        })
         
         return gridContent += `<article data-id="${recipe.id}" class="recipe-card">
                                     <div class="recipe-card__img-container"></div>
                                     <div class="recipe-card__text-container">
                                         <h2 class="recipe-title">${recipe.name}</h2>
-                                        <div class="recipe-time"><i class="fa-solid fa-clock-rotate-left"></i> ${recipe.time} min</div>
+                                        <div class="recipe-time"><i class="far fa-clock recipe-time__icon"></i> ${recipe.time} min</div>
                                         <div class="recipe-ingredients">
                                             <ul>
                                                 ${ingredientListHtml}
