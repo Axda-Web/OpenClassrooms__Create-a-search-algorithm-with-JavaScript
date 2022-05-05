@@ -32,9 +32,9 @@ export const displayFilterListItems = data => {
     let filterListHtml = ''
 
     if (data.length > 0) {
-        data.forEach( item => filterListHtml += `<li data-item_id="${generateRandomId()}" tabindex="0" id="filter--${item.split(' ').join('_')}" class="filter-list__item" role="option" aria-selected="false" >${item}</li>`)
+        data.forEach( item => filterListHtml += `<li data-item_id="${generateRandomId()}" id="filter--${item.split(' ').join('_')}" class="filter-list__item">${item}</li>`)
     } else {
-        filterListHtml = '<li tabindex="0" class="filter-list__item filter-list__item--empty" role="option" aria-selected="false" >Pas de résultat pour cette recherche...</li>'
+        filterListHtml = '<li class="filter-list__item filter-list__item--empty">Pas de résultat pour cette recherche...</li>'
     }
 
     return filterListHtml
@@ -44,10 +44,6 @@ export const displayFilterListItems = data => {
 
 //Ajout badge
 export const addBadge = event => {
-
-    //Accessibility
-    event.target.setAttribute('aria-selected', 'true')
-    event.target.parentNode.setAttribute('aria-activedescendant', event.target.id)
 
     //Création d'un nouvel obj badge content grâce aux infos fournies par le click event
     const newBadge = {
@@ -122,42 +118,6 @@ const displayBadges = () => {
 //Fermeture badge
 export const removeBadge = event => {
 
-     /* //Accessibility
-    const elt = document.querySelector(`[data-item_id="${event.target.parentNode.dataset.badge_id}"]`)
-    elt.setAttribute('aria-selected', 'false')
-
-    switch (elt.parentNode.id) {
-        case 'ingredients-filter-list':
-            const eltsIngredientCategory = dataManager.badgeItems.filter( item => item.category === 'ingredients-filter-list')
-            const lastIngredientElt = document.querySelector(`[data-item_id="${eltsIngredientCategory[eltsIngredientCategory.length - 1].id}"]`)
-            if(eltsIngredientCategory.length > 0) {
-                elt.parentNode.setAttribute('aria-activedescendant', lastIngredientElt.id)
-            } else {
-                elt.parentNode.setAttribute('aria-activedescendant', '')
-            }
-            break
-        case 'appliances-filter-list':
-            const eltsApplianceCategory = dataManager.badgeItems.filter( item => item.category === 'appliances-filter-list')
-            const lastApplianceElt = document.querySelector(`[data-item_id="${eltsApplianceCategory[eltsApplianceCategory.length - 1].id}"]`)
-            if(eltsApplianceCategory.length > 0) {
-                elt.parentNode.setAttribute('aria-activedescendant', lastApplianceElt.id)
-            } else {
-                elt.parentNode.setAttribute('aria-activedescendant', '')
-            }
-            break
-        case 'ustensils-filter-list':
-            const eltsUstensilCategory = dataManager.badgeItems.filter( item => item.category === 'ustensils-filter-list')
-            const lastUstensilElt = document.querySelector(`[data-item_id="${eltsUstensilCategory[eltsUstensilCategory.length - 1].id}"]`)
-            if(eltsUstensilCategory.length > 0) {
-                elt.parentNode.setAttribute('aria-activedescendant', lastUstensilElt.id)
-            } else {
-                elt.parentNode.setAttribute('aria-activedescendant', '')
-            }
-            break
-    } */
-
-
-
     //Suppression du badge selectionné dans l'array contenant les badges
     dataManager.badgeItems = dataManager.badgeItems.filter( badge => badge.id !== event.target.parentNode.dataset.badge_id)
 
@@ -185,21 +145,12 @@ export const closeFilterList = event => {
 
     //Affichage des btn permettant d'afficher les menus filtres avancés
     filterBtns.forEach( btn => {
-        
-        //Accessibilité
-        btn.setAttribute('aria-expanded', 'false')
-        btn.setAttribute('aria-hidden', 'false')
-
         btn.style.display = 'block'
     })
 
 
     //Masquage des menus filtres avancés
     filterInputs.forEach( input => {
-
-        //Accessibilité
-        input.setAttribute('aria-hidden', 'true')
-
         input.style.display = 'none'
     })
 
@@ -288,11 +239,6 @@ export const showFilterList = event => {
         const currentFilterBtnToggle = event.currentTarget
         const currentFilterInput = currentFilterBtnToggle.nextElementSibling
         const currentFilterList = currentFilterInput.nextElementSibling
-
-        //Accessibilité
-        currentFilterBtnToggle.setAttribute('aria-expanded', 'true')
-        currentFilterBtnToggle.setAttribute('aria-hidden', 'true')
-        currentFilterInput.setAttribute('aria-hidden', 'false')
 
         //Affichage du dropdown menu associé au btn clické
         currentFilterBtnToggle.style.display = 'none'
