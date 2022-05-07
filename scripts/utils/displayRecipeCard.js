@@ -10,6 +10,7 @@ const displayRecipeCard = (data) => {
         
         let ingredientListHtml = ''
 
+        //Mise en forme de l'affichage des ingredients
         recipe.ingredients.forEach( ingredient => {
 
             let formatedIngredientQuantity = ingredient.quantity ? `: ${ingredient.quantity}` : ''
@@ -25,6 +26,7 @@ const displayRecipeCard = (data) => {
             ingredientListHtml += `<li class="recipe-ingredient"><span class="recipe-ingredient__name">${ingredient.ingredient}</span>${formatedIngredientQuantity}${separator}${formatedUnit}`
         })
         
+        //Génération du HTML pour chaque carte
         return gridContent += `<article data-id="${recipe.id}" class="recipe-card">
                                     <div class="recipe-card__img-container"></div>
                                     <div class="recipe-card__text-container">

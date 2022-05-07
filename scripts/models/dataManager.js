@@ -7,28 +7,27 @@ export default class dataManager {
     static getData() {
         this.data = recipes
         this.filteredData = recipes
-        this.filteredWithSearchbar = this.data
     }
 
-    //Récupération des ingredients (MAJ après chaque recherche avec la searchBar)
+    //Récupération des ingredients
     static getIngredients() {
         const duplicatesIngredients = this.filteredData.map( recipe => recipe.ingredients ).flat().map( item => item['ingredient'])
         this.ingredients = [...new Set(duplicatesIngredients)]
-        this.filteredIngredients = this.ingredients
+        this.filteredIngredients = [...this.ingredients]
     }
 
-    //Récupération des appareils (MAJ après chaque recherche avec la searchBar)
+    //Récupération des appareils
     static getAppliances() {
         const duplicatesAppliances = this.filteredData.map( recipe => recipe.appliance )
         this.appliances = [...new Set(duplicatesAppliances)]
-        this.filteredAppliances = this.appliances
+        this.filteredAppliances = [...this.appliances]
     }
 
-    //Récupération des ustensiles (MAJ après chaque recherche avec la searchBar)
+    //Récupération des ustensiles
     static getUstensils() {
         const duplicatesUstensils = this.filteredData.map( recipe => recipe.ustensils ).flat()
         this.ustensils = [...new Set(duplicatesUstensils)]
-        this.filteredUstensils = this.ustensils
+        this.filteredUstensils = [...this.ustensils]
     }
 
     //Initialisation du tableau destiné à contenir les badges
@@ -38,10 +37,9 @@ export default class dataManager {
 
     //Recherche via TITRE, INGREDIENTS, DESCRIPTION avec la searchBar
     static filterData(term) {
-        this.filteredData = this.data.filter( recipe => recipe.name.toLowerCase().includes(term) || 
+        this.filteredData = this.filteredData.filter( recipe => recipe.name.toLowerCase().includes(term) || 
         recipe.description.toLowerCase().includes(term) ||
         recipe.ingredients.some( ingredient => ingredient.ingredient.includes(term)))
-        this.filteredWithSearchbar = this.filteredData
     }
     
     //Recherche ingredient dans le sous-menu filtre avancé
@@ -59,9 +57,9 @@ export default class dataManager {
         this.filteredUstensils = this.ustensils.filter( ustensil => ustensil.toLowerCase().includes(term))
     }
 
-    //Filtrage des data (actualisées) via les badges
+    //Filtrage des data via les badges
     static filterWithBadges() {
-        if (this.badgeItems.length > 0) {
+        
             this.badgeItems.forEach( badge => {
                 switch(badge.category) {
                     case 'ingredients-filter-list':
@@ -75,9 +73,6 @@ export default class dataManager {
                         break
                 }
             })
-        } else {
-            this.filteredData = this.filteredWithSearchbar
-        }
     }
 }
 

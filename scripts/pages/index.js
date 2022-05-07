@@ -15,8 +15,11 @@ const filterInputBtns = document.querySelectorAll('.filter-input__btn')
 dataManager.getData()
 dataManager.setBadgeItems()
 
-//Affichage des recettes
+//Affichage de toutes les recettes
 displayRecipeCard(dataManager.data)
+
+//MAJ des items dans les menus filtres avancés
+updateFilterListData()
 
 
 
@@ -24,13 +27,19 @@ displayRecipeCard(dataManager.data)
 function handleInputChange(event){
     if (event.target.value.length > 2){
 
+        //Reset|MAJ des data si existence de badge(s)
+        dataManager.filteredData = [...dataManager.data]
+        if(dataManager.badgeItems.length > 0){
+            dataManager.filterWithBadges()
+        }
+
         //Récupération des data filtrées
         dataManager.filterData(event.target.value.toLocaleLowerCase())
 
-        //Affichage du message d'erreur en fonction des résultats de la recherche
+        //Gestion de l'affichage du message d'erreur en fonction des résultats post-filtrage
         !dataManager.filteredData.length ? noResultsText.style.display = 'block' : noResultsText.style.display = ''
 
-        //Affichage des data filtrées
+        //Affichage des recettes filtrées
         displayRecipeCard(dataManager.filteredData)
         
         //MAJ des items dans les menus filtres avancés
@@ -41,9 +50,17 @@ function handleInputChange(event){
         //Masquage du message d'erreur
         noResultsText.style.display = ''
 
-        //Affichage des data non-filtrées
-        displayRecipeCard(dataManager.data)
-        dataManager.filteredData = dataManager.data
+        //Reset|MAJ des data en fonction de la présence (ou non) de badges
+        dataManager.filteredData = [...dataManager.data]
+        if(dataManager.badgeItems.length > 0){
+            dataManager.filterWithBadges()
+        }
+
+        //Affichage des data filtrées
+        displayRecipeCard(dataManager.filteredData)
+
+        //MAJ des items dans les menus filtres avancés
+        updateFilterListData()
     }
 }
 searchTerm.addEventListener('input', handleInputChange)

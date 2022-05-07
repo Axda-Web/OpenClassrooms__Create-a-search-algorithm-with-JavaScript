@@ -61,8 +61,14 @@ export const addBadge = event => {
 
     //MAJ des data affichées en fonction des badges actifs
     dataManager.filterWithBadges()
+
+    //Gestion de l'affichage du message d'erreur en fonction des résultats post-filtrage
     !dataManager.filteredData.length ? noResultsText.style.display = 'block' : noResultsText.style.display = ''
+
+    //Affichage des recettes filtrées
     displayRecipeCard(dataManager.filteredData)
+
+    //MAJ des items dans les menus filtres avancés
     updateFilterListData()
     
     //Affichage du badge
@@ -122,20 +128,25 @@ export const removeBadge = event => {
     dataManager.badgeItems = dataManager.badgeItems.filter( badge => badge.id !== event.target.parentNode.dataset.badge_id)
 
     
-    //MAJ des data
-    if (dataManager.badgeItems.length === 0) {
-        noResultsText.style.display = ''
-        updateFilterListData()
-        displayRecipeCard(dataManager.filteredWithSearchbar)
+    //Reset|MAJ des data en fonction de la présence (ou non) de characters dans la searchBar
+    dataManager.filteredData = [...dataManager.data]
+    if(document.getElementById('search').value.length > 2){
+        dataManager.filterData(document.getElementById('search').value)
+    } else 
+
+    //MAJ des data si existence de badge(s)
+    if (dataManager.badgeItems.length > 0) {
+        dataManager.filterWithBadges()
     }
 
-    dataManager.filteredData = dataManager.filteredWithSearchbar
-    dataManager.filterWithBadges()
-    updateFilterListData()
+    //Affichage des recettes filtrées
     displayRecipeCard(dataManager.filteredData)
 
+    //MAJ des items dans les menus filtres avancés
+    updateFilterListData()
+
     //MAJ de l'UI sans le badge supprimé
-    displayBadges()
+    displayBadges() 
 }
 
 
@@ -157,10 +168,8 @@ export const closeFilterList = event => {
     filterLists.forEach( list => list.style.display = 'none')
 
     
-    
-    //Reset des éléments présents dans les menus filter avancés
+    //Reset des éléments présents dans les searchBar des menus filtres avancés
     filterInputs.forEach( input => input.childNodes[1].value = '')
-    updateFilterListData()
 
     //Suppresion de la gestion du click event sur la page permetant de masquer les menu filtres avancés
     document.body.removeEventListener('click', closeFilterListWithExternalClick)
@@ -168,17 +177,20 @@ export const closeFilterList = event => {
 
 
 
-//Fermeture des dropdown menu filtres avancés lors d'un click externe (ajout des exeptions pour certains éléments)
+//Fermeture des dropdown menu filtres avancés lors d'un click externe (ajout des exceptions pour certains éléments)
 export const closeFilterListWithExternalClick = event => {
 
+    //Exception lors du click sur un item présent dans les listes des menus filtres avancés
     if (event.target.className === 'filter-list__item') {
         return
     }
 
+    //Exception lors du click sur un badge
     if (event.target.parentNode.dataset.badge_id) {
         return
     }
 
+    //Exception lors du click sur les btns permettant d'afficher les menus filtres avancés + searchBars présentes dans les menus filtres avancés
     switch (event.target.id) {
         case 'ingredientsBtn':
             break
@@ -254,7 +266,7 @@ export const showFilterList = event => {
 
 
 
-//MAJ des data contenus dans les filtres avancés après recherche effectuée dans la barre de recherche
+//MAJ des data contenus dans les filtres avancés après recherche effectuée dans la barre de recherche ou ajout de badge(s)
 export const updateFilterListData = () => {
 
     //Récupération des data
