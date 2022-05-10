@@ -37,9 +37,18 @@ export default class dataManager {
 
     //Recherche via TITRE, INGREDIENTS, DESCRIPTION avec la searchBar
     static filterData(term) {
-        this.filteredData = this.filteredData.filter( recipe => recipe.name.toLowerCase().includes(term) || 
-        recipe.description.toLowerCase().includes(term) ||
-        recipe.ingredients.some( ingredient => ingredient.ingredient.includes(term)))
+
+        let newFilteredData = []
+
+        for (let i = 0; i < this.filteredData.length; i++){
+            if(this.filteredData[i].name.toLowerCase().includes(term) || 
+            this.filteredData[i].description.toLowerCase().includes(term) ||
+            this.filteredData[i].ingredients.some( ingredient => ingredient.ingredient.includes(term))) {
+                newFilteredData.push(this.filteredData[i])
+            }
+        }
+        
+        this.filteredData = [...newFilteredData]
     }
     
     //Recherche ingredient dans le sous-menu filtre avancé
