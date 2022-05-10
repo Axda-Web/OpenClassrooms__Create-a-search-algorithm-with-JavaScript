@@ -1,6 +1,6 @@
 import dataManager from '../models/dataManager.js'
 import displayRecipeCard from '../utils/displayRecipeCard.js'
-import { showFilterList, closeFilterList, updateFilterListData } from '../utils/filterList.js'
+import { showFilterList, closeFilterList, updateFilterListData } from '../utils/advancedFilters.js'
 
 
 //DOM variables

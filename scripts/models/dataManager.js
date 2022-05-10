@@ -11,21 +11,21 @@ export default class dataManager {
 
     //Récupération des ingredients
     static getIngredients() {
-        const duplicatesIngredients = this.filteredData.map( recipe => recipe.ingredients ).flat().map( item => item['ingredient'])
+        const duplicatesIngredients = this.filteredData.map( recipe => recipe.ingredients ).flat().map( item => item['ingredient'].toLowerCase().replace(/(^|\s)\S/, L => L.toUpperCase())).sort()
         this.ingredients = [...new Set(duplicatesIngredients)]
         this.filteredIngredients = [...this.ingredients]
     }
 
     //Récupération des appareils
     static getAppliances() {
-        const duplicatesAppliances = this.filteredData.map( recipe => recipe.appliance )
+        const duplicatesAppliances = this.filteredData.map( recipe => recipe.appliance ).sort()
         this.appliances = [...new Set(duplicatesAppliances)]
         this.filteredAppliances = [...this.appliances]
     }
 
     //Récupération des ustensiles
     static getUstensils() {
-        const duplicatesUstensils = this.filteredData.map( recipe => recipe.ustensils ).flat()
+        const duplicatesUstensils = this.filteredData.map( recipe => recipe.ustensils ).flat().sort()
         this.ustensils = [...new Set(duplicatesUstensils)]
         this.filteredUstensils = [...this.ustensils]
     }
