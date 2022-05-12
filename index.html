@@ -31,13 +31,13 @@
     <div class="container-xl">
         <header class="header">
             <img class="header__img" src="./assets/logo.png" alt="Logo Les petits plats">
-            <form class="header__form" action="">
+            <form class="header__form">
                 <span class="fas fa-search form__icon"></span>
                 <input id="search" type="text" class="form-control form__input" placeholder="Rechercher une recette" aria-label="rechercher une recette">
             </form>
         </header>
-        <section class="badges-container"></section>
-        <section class="filter">
+        <div class="badges-container"></div>
+        <div class="filter">
             <div class="filter-container filter-container--ingredients">
                 <button id="ingredientsBtn" class="filter-btn-toggle filter-btn-toggle--ingredients">Ingredients <span class="fas fa-angle-down filter-btn-toggle__icon"></span></button>
                 <div class="filter-input filter-input__ingredients">
@@ -62,7 +62,7 @@
                 </div>
                 <ul class="filter-list filter-list--ustensils" id="ustensils-filter-list"></ul>
             </div>
-        </section>
+        </div>
         <p class="no-results-text">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.</p>
         <main id="grid">
 

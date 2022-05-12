@@ -23,7 +23,7 @@ const displayRecipeCard = (data) => {
                 separator = ' '
             }
             
-            ingredientListHtml += `<li class="recipe-ingredient"><span class="recipe-ingredient__name">${ingredient.ingredient}</span>${formatedIngredientQuantity}${separator}${formatedUnit}`
+            ingredientListHtml += `<li class="recipe-ingredient"><span class="recipe-ingredient__name">${ingredient.ingredient}</span>${formatedIngredientQuantity}${separator}${formatedUnit}</li>`
         })
         
         //Génération du HTML pour chaque carte

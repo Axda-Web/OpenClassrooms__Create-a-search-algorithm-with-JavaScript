@@ -7,6 +7,7 @@ import { showFilterList, closeFilterList, updateFilterListData } from '../utils/
 const searchTerm = document.getElementById('search')
 const noResultsText = document.querySelector('.no-results-text')
 const filterBtns = document.querySelectorAll('.filter-btn-toggle')
+const filterBtnIcons = document.querySelectorAll('.filter-btn-toggle__icon')
 const filterInputBtns = document.querySelectorAll('.filter-input__btn')
 
 
@@ -68,7 +69,8 @@ searchTerm.addEventListener('input', handleInputChange)
 
 
 //Gestion du click event sur les btn permetant d'afficher les menu filtres avancés
-filterBtns.forEach( btn => btn.addEventListener('click', showFilterList)) 
+filterBtns.forEach( btn => btn.addEventListener('click', showFilterList))
+filterBtnIcons.forEach( btn => btn.addEventListener('click', showFilterList))
 
 //Gestion du click event sur les btn permetant de masquer les menu filtres avancés
 filterInputBtns.forEach( btn => btn.addEventListener('click', closeFilterList))
