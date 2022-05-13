@@ -11,14 +11,14 @@ export default class dataManager {
 
     //Récupération des ingredients
     static getIngredients() {
-        const duplicatesIngredients = this.filteredData.map( recipe => recipe.ingredients ).flat().map( item => item['ingredient'].toLowerCase().replace(/(^|\s)\S/, L => L.toUpperCase())).sort()
+        const duplicatesIngredients = this.filteredData.map( recipe => recipe.ingredients ).flat().map( item => item['ingredient'].toLowerCase().trim().replace(/(^|\s)\S/, L => L.toUpperCase())).sort()
         this.ingredients = [...new Set(duplicatesIngredients)]
         this.filteredIngredients = [...this.ingredients]
     }
 
     //Récupération des appareils
     static getAppliances() {
-        const duplicatesAppliances = this.filteredData.map( recipe => recipe.appliance ).sort()
+        const duplicatesAppliances = this.filteredData.map( recipe => recipe.appliance.trim() ).sort()
         this.appliances = [...new Set(duplicatesAppliances)]
         this.filteredAppliances = [...this.appliances]
     }
@@ -63,13 +63,13 @@ export default class dataManager {
             this.badgeItems.forEach( badge => {
                 switch(badge.category) {
                     case 'ingredients-filter-list':
-                        this.filteredData = this.filteredData.filter( recipe => recipe.ingredients.some( ingredient => ingredient.ingredient.includes(badge.name)))
+                        this.filteredData = this.filteredData.filter( recipe => recipe.ingredients.some( ingredient => ingredient.ingredient.toLowerCase().includes(badge.name.toLowerCase())))
                         break
                     case 'appliances-filter-list':
-                        this.filteredData = this.filteredData.filter( recipe => recipe.appliance.includes(badge.name))
+                        this.filteredData = this.filteredData.filter( recipe => recipe.appliance.toLowerCase().includes(badge.name.toLowerCase()))
                         break
                     case 'ustensils-filter-list':
-                        this.filteredData = this.filteredData.filter( recipe => recipe.ustensils.some( ustensil => ustensil.includes(badge.name)))
+                        this.filteredData = this.filteredData.filter( recipe => recipe.ustensils.some( ustensil => ustensil.toLowerCase().includes(badge.name.toLowerCase())))
                         break
                 }
             })
