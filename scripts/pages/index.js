@@ -3,6 +3,7 @@ import displayRecipeCard from '../utils/displayRecipeCard.js'
 import { showFilterList, closeFilterList, updateFilterListData } from '../utils/advancedFilters.js'
 
 
+
 //DOM variables
 const searchTerm = document.getElementById('search')
 const noResultsText = document.querySelector('.no-results-text')

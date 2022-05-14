@@ -56,6 +56,7 @@ export const addBadge = event => {
     if (dataManager.badgeItems.find( badge => badge.name === newBadge.name)) {
         return
     } else {
+        //Ajout du badge dans le dataManager
         dataManager.badgeItems = [...dataManager.badgeItems, newBadge]
     }
 
@@ -124,7 +125,7 @@ const displayBadges = () => {
 //Fermeture badge
 export const removeBadge = event => {
 
-    //Suppression du badge selectionné dans l'array contenant les badges
+    //Suppression du badge selectionné dans le dataManager
     dataManager.badgeItems = dataManager.badgeItems.filter( badge => badge.id !== event.target.parentNode.dataset.badge_id )
 
     
@@ -132,7 +133,7 @@ export const removeBadge = event => {
     dataManager.filteredData = [...dataManager.data]
     if(document.getElementById('search').value.length > 2){
         dataManager.filterData(document.getElementById('search').value)
-    } else 
+    }
 
     //MAJ des data si existence de badge(s)
     if (dataManager.badgeItems.length > 0) {
