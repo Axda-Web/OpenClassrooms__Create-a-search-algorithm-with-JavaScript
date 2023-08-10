@@ -44,4 +44,4 @@ To get started with the Les Petits Plats project, follow the steps below:
 
 3. Use a local development server to open the `index.html` file (e.g. [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)):
 
-A deployed version of the Fisheye project is available on Vercel at [Les Petits Plats](https://fisheye-ez0pmi6a7-axda-web.vercel.app/).
+A deployed version of the Fisheye project is available on Vercel at [Les Petits Plats](https://les-petits-plats-kappa.vercel.app/).
