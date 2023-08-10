@@ -1,95 +1,94 @@
-@use './base' as *;
-@use './component' as *;
+@use "./base" as *;
+@use "./component" as *;
 
-
+// Page container
+.page-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
 
 //Header
 .header {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
-    &__img {
-        display: block;
-        max-width: 250px;
-        height: auto;
-        margin: 2em auto 1em;
-    }
+  &__img {
+    display: block;
+    max-width: 250px;
+    height: auto;
+    margin: 2em auto 1em;
+  }
 }
-
-
 
 //Badges section
 .badges-container {
-    margin: 1em 0;
-    display: none;
-    flex-wrap: wrap;
-    gap: 10px;
+  margin: 1em 0;
+  display: none;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-
-
 
 //Filter section
 .filter {
-    margin-top: 1em;
-    display: flex;
-    align-items: flex-start;
-    
+  margin-top: 1em;
+  display: flex;
+  align-items: flex-start;
 
-    &-container {
-        z-index: 1;
-        max-width: 550px;
-        margin-right: 1em;
-        color: $color_white;
-        padding: 1.2em;
-        border-radius: 5px;
-        font-size: .875rem;
+  &-container {
+    z-index: 1;
+    max-width: 550px;
+    margin-right: 1em;
+    color: $color_white;
+    padding: 1.2em;
+    border-radius: 5px;
+    font-size: 0.875rem;
 
-        &--ingredients {
-            background-color: $color_blue;
-        }
-
-        &--appliances {
-            background-color: $color_green;
-        }
-
-        &--ustensils {
-            background-color: $color_red;
-        }
+    &--ingredients {
+      background-color: $color_blue;
     }
 
-    &-list {
-        list-style-type: none;
-        margin: 0;
-        max-width: 550px;
-        display: none;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        max-height: 350px;
-        
-        &--ingredients {
-            overflow-y: scroll;
-        }
-
-        &__item {
-            cursor: pointer;
-            padding: .2em 0;
-            padding-right: 1.3em;
-
-            &--empty {
-                font-style: italic;
-            }
-        }
+    &--appliances {
+      background-color: $color_green;
     }
+
+    &--ustensils {
+      background-color: $color_red;
+    }
+  }
+
+  &-list {
+    list-style-type: none;
+    margin: 0;
+    max-width: 550px;
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    max-height: 350px;
+
+    &--ingredients {
+      overflow-y: scroll;
+    }
+
+    &__item {
+      cursor: pointer;
+      padding: 0.2em 0;
+      padding-right: 1.3em;
+
+      &--empty {
+        font-style: italic;
+      }
+    }
+  }
 }
-
 
 //Recipe grid
 #grid {
-    margin-top: 4em;
-    max-width: 1110px;
-    position: absolute;
-    top: 270px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 2em;
+  margin-top: 4em;
+  max-width: 1440px;
+  position: absolute;
+  top: 270px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 2em;
 }
